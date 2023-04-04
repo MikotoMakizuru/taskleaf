@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    if @task.save!
+    if @task.save
       redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   def destroy
     task = Task.find(params[:id])
     task.destroy
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました削除しました。"
+    redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
   end
 
   private
