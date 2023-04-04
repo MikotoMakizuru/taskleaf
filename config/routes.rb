@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'ssessions#create'
+
+  get 'sessions/new'
   namespace :admin do
     resources :users
   end
