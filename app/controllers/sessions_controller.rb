@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(session_params[:password])
       # 認証に成功した場合に, セッションに user_id を格納する
       session[:user_id] = user.id
-      redirect_to root_url, notice: 'ログインしました。'
+      redirect_to root_path, notice: 'ログインしました。'
     else
       render :new
     end
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url, notice: 'ログアウトしました。'
+    redirect_to root_path, notice: 'ログアウトしました。'
   end
 
   private

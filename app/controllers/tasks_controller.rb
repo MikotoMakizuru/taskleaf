@@ -1,14 +1,20 @@
 class TasksController < ApplicationController
+  # before メソッドを利用して利用して, set_task メソッドを各アクション実行前に呼び出す
+  # only オプションで対象となるアクションを指定
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = current_user.tasks.recent
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
     @task = Task.new
+  end
+
+  def edit
   end
 
   def create
@@ -20,26 +26,24 @@ class TasksController < ApplicationController
       render :new
     end
   end
-  
-  def edit
-    @task = Task.find(params[:id])
-  end
 
   def update
-    task = Task.find(params[:id])
-    task.update!(task_params)
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を更新しました。"
+    @task.update!(task_params)
+    redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
   end
 
   def destroy
-    task = Task.find(params[:id])
-    task.destroy
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を削除しました。"
+    @task.destroy
+    redirect_to tasks_url, notice: "タスク「#{@task.name}」を削除しました。"
   end
 
   private
 
   def task_params
     params.require(:task).permit(:name, :description)
+  end
+
+  def set_task
+    @task = current_user.tasks.find(params[:id])
   end
 end
