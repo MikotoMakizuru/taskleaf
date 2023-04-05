@@ -6,6 +6,9 @@ class Task < ApplicationRecord
   # タスクの name 属性の値にカンマは含まれていないか
   validate :validate_name_not_including_comma
 
+  # User と Task の 1 対多の関係を定義
+  belongs_to :user
+
   private
 
   def set_nameless_name
