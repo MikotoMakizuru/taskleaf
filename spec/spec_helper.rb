@@ -20,7 +20,7 @@ require 'capybara/rspec'
 RSpec.configure do |config|
   # SystemSpec を実行するドライバの設定
   config.before(:each, type: :system) do
-    driven_by :seleinum_chrome_headless
+    driven_by :selenium_chrome_headless
   end
 
   # rspec-expectations config goes here. You can use an alternate
