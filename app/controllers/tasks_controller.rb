@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
-  # before メソッドを利用して利用して, set_task メソッドを各アクション実行前に呼び出す
+  # before メソッドを利用して, set_task メソッドを各アクション実行前に呼び出す
   # only オプションで対象となるアクションを指定
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.recent
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).recent
   end
 
   def show
