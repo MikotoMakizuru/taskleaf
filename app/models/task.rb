@@ -1,5 +1,9 @@
 class Task < ApplicationRecord
+
+  # 1 つのタスクに 1 つの画像を紐付けること, その画像を Task モデルから image と呼ぶこと
   has_one_attached :image
+
+  # タスク名が空でなく, 30文字以下であるかとうか
   validates :name, presence: true, length: { maximum: 30 }
   # タスクの name 属性の値にカンマは含まれていないか
   validate :validate_name_not_including_comma
@@ -10,12 +14,17 @@ class Task < ApplicationRecord
   # カスタムのクエリー用のメソッド
   scope :recent, -> { order(created_at: :desc) }
 
-  def self.ransackable_attributes(auth_object = nil)
-    %w[name created_at]
+  def self.csv_attributes
+    ["name", "description", "created_at", "updated_at"]
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    []
+  def self.generate_csv
+    CSV.generate(headers: true) do |csv|
+      csv << csv_attributes
+      all.each do |task|
+        csv << csv_attributes.map{ |attr| task.send(attr) }
+      end
+    end
   end
 
   private
