@@ -68,3 +68,4 @@ gem 'bootstrap'
 # URL の部分をリンクにする
 gem 'rails_autolink'
 gem 'ransack'
+gem 'kaminari'
