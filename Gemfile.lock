@@ -158,6 +158,8 @@ GEM
     rack (2.2.6.4)
     rack-protection (2.2.4)
       rack
+    rack-proxy (0.7.6)
+      rack
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (5.2.8.1)
@@ -239,6 +241,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    semantic_range (3.0.0)
     sidekiq (5.2.10)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (~> 2.0)
@@ -268,9 +271,6 @@ GEM
     thread_safe (0.3.6)
     tilt (2.1.0)
     timeout (0.3.2)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
@@ -280,6 +280,11 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (5.4.4)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -314,10 +319,10 @@ DEPENDENCIES
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
-  turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webpacker
 
 RUBY VERSION
    ruby 2.5.1p57
