@@ -18,6 +18,10 @@ class Task < ApplicationRecord
     ["name", "description", "created_at", "updated_at"]
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "description", "id", "name", "updated_at", "user_id"]
+  end
+
   def self.generate_csv
     CSV.generate(headers: true) do |csv|
       csv << csv_attributes
