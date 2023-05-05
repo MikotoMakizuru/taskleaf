@@ -52,6 +52,11 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @task, notice: "タスク「#{@task.name}」を削除しました。", status: :see_other }
+      format.json { head :no_content }
+    end
   end
 
   def import
