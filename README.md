@@ -1,10 +1,10 @@
 # README
 
 - Ruby version
-  - 2.5.2
+  - 3.0.1
 
 - Rails version
-  - 5.2.1
+  - 6.1.0
 
 # objective
 - 技術書を手を動かしながら読みすすめることで、Rails アプリケーション開発の理解を深める。
